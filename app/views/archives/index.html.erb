@@ -1,0 +1,48 @@
+<div class="columns is-centered ">
+  <div class="column is-half">
+    <% @entries.each do |day,entries| %>
+        <h3 class="is-size-4 has-text-weight-bold mb-4 has-text-centered mt-6">Entries for <%= day %> </h3>
+
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total Calories</p>
+                    <p class="title"><%= entries.pluck(:calories).sum %></p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total protein</p>
+                    <p class="title"><%= entries.pluck(:proteins).compact.sum %>g</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total carbohydrates</p>
+                    <p class="title"><%= entries.pluck(:carbohydrates).sum %>g</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total fats</p>
+                    <p class="title"><%= entries.pluck(:fats).sum %>g</p>
+                </div>
+            </div>
+        </nav>
+
+        <% entries.each do |entry| %>
+            <%= link_to entry_path(entry) do %>
+                <div class="card">
+                    <div class="card-content">
+                        <strong><%= entry.meal_type %></strong><br/>
+                        <%= entry.calories %> calories,
+                        <%= entry.proteins %> g protein,
+                        <%= entry.carbohydrates %> g carbohydrates,
+                        <%= entry.fats %> g fats
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
