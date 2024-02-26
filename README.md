@@ -1,4 +1,4 @@
-Food Blog
+# Food Blog
 
 This food blog keeps track of daily macros inputted by the user. 
 
